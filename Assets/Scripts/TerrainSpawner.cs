@@ -6,8 +6,10 @@ public class TerrainSpawner : MonoBehaviour {
 
     public GameObject TerrainPrefab;
 
+    public float SpawnDelay;
 
-
+    public List<GameObject> Rocks = new List<GameObject>();
+    
 
 	// Use this for initialization
 	void Start () {
@@ -17,16 +19,17 @@ public class TerrainSpawner : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
     IEnumerator SpawnTerrain()
     {
         //Debug.Log("entered spawn wall"); //sending message to console
-        Instantiate(TerrainPrefab, transform.position, Quaternion.identity); //will spawn shit at spawner loaction
+        Instantiate(Rocks[Random.Range(0, Rocks.Count)], transform.position, Quaternion.identity); //will spawn shit at spawner loaction
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(SpawnDelay);
 
         StartCoroutine(SpawnTerrain());
 
