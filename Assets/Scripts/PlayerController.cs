@@ -1,20 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
     public Rigidbody2D Rigid; //public=seen in inspector  private=invisible in inspector   
     //USE AND DECLARE SHIT HERE FROM NOW ON ^^^^^^^^^^^^
     public float JumpForce; //float=decimals
-    //public int JumpForceInt; //int= whole number
+                            //public int JumpForceInt; //int= whole number
 
     //public Animator Anim;
 
     //public GameObject GameOverText;
-	// Use this for initialization
+    // Use this for initialization
 
 
+    public float FuelLevel = 100;
+    public float BurnRate;
+
+    public Image FuelBar;
 
 
 
@@ -28,12 +33,20 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
         //if (Input.GetKeyDown(KeyCode.Space) == true)
-       // {
-            
-           // Anim.SetBool("SpaceCheck", true);
-            //Anim.SetBool("JumpDown", true);
-      //  }
+        // {
 
+        // Anim.SetBool("SpaceCheck", true);
+        //Anim.SetBool("JumpDown", true);
+        //  }
+
+        FuelLevel = FuelLevel - BurnRate * Time.deltaTime;
+
+        if(FuelLevel <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
+        FuelBar.fillAmount = FuelLevel / 100;
 
         if (Input.GetKey(KeyCode.Space) == true)
         {
