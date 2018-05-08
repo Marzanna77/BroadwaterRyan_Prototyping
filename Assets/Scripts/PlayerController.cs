@@ -64,6 +64,11 @@ public class PlayerController : MonoBehaviour {
             Destroy(gameObject);
             //GameOverText.SetActive(true);
         }   
+
+        if (collision.gameObject.tag == "Fuel")
+        {
+            FuelLevel = FuelLevel + 30;
+        }
     }
 
 
